@@ -57,3 +57,59 @@ exports.updateById = (req, res) => {
         res.send(data);
     })
 }
+
+exports.remove = (req, res) => {
+    produtoPedidoModel.remove(req.params.produtoPedidoId, (err, data) => {
+        if (err) {
+            if (err.kind == "not_found"){
+                res.status(404).send({ message: "ProdutoPedido não encontrado."});
+            } else {
+                res.status(500).send({ message: "Erro ao deletar registro"});
+            } 
+        } else {
+            res.send({message: "ProdutoPedido deletado com sucesso."});
+        }
+    });
+}
+ 
+exports.removeByPedido = (req, res) => {
+    produtoPedidoModel.removeByPedido(req.params.pedidoId, (err, data) => {
+        if (err) {
+            if (err.kind == "not_found"){
+                res.status(404).send({ message: "Pedido não encontrado."});
+            } else {
+                res.status(500).send({ message: "Erro ao deletar registro"});
+            } 
+        } else {
+            res.send({message: "Pedido deletado com sucesso."});
+        }
+    });
+}
+ 
+exports.removeByProduto = (req, res) => {
+    produtoPedidoModel.removeByProduto(req.params.produtoId, (err, data) => {
+        if (err) {
+            if (err.kind == "not_found"){
+                res.status(404).send({ message: "Produto não encontrado."});
+            } else {
+                res.status(500).send({ message: "Erro ao deletar registro"});
+            } 
+        } else {
+            res.send({message: "Produto deletado com sucesso."});
+        }
+    });
+}
+ 
+exports.removeAll = (req, res) => {
+    produtoPedidoModel.removeAll((err, data) => {
+        if (err) {
+            if (err.kind == "not_found"){
+                res.status(404).send({ message: "ProdutoPedido não encontrado."});
+            } else {
+                res.status(500).send({ message: "Erro ao deletar registro"});
+            } 
+        } else {
+            res.send({message: "ProdutoPedidos deletados com sucesso."});
+        }
+    });
+}

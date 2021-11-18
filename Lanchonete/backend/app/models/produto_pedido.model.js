@@ -88,4 +88,58 @@ ProdutoPedido.updateById = (produtoPedidoId, produtoPedido, result) => {
         });
 }
 
+ProdutoPedido.removeByProduto = (produtoId, result) => {
+    sql.query("DELETE FROM produtos_pedidos WHERE produtos_idprodutos = ?", produtoId, (err, res) => {
+        if (err) {
+            console.log("Erro: ", err);
+            result(err, null);
+
+        } else if (res.affectedRows == 0) {
+            result({ kind: "not_found" })
+        } else {
+            result(null, res);
+        }
+    })
+}
+
+ProdutoPedido.removeByPedido = (pedidoId, result) => {
+    sql.query("DELETE FROM produtos_pedidos WHERE produtos_idpedidos = ?", pedidoId, (err, res) => {
+        if (err) {
+            console.log("Erro: ", err);
+            result(err, null);
+
+        } else if (res.affectedRows == 0) {
+            result({ kind: "not_found" })
+        } else {
+            result(null, res);
+        }
+    })
+}
+
+ProdutoPedido.remove = (produtoPedidoId, result) => {
+    sql.query("DELETE FROM produtos_pedidos WHERE idprodutos_pedidos = ?", produtoPedidoId, (err, res) => {
+        if (err) {
+            console.log("Erro: ", err);
+            result(err, null);
+
+        } else if (res.affectedRows == 0) {
+            result({ kind: "not_found" })
+        } else {
+            result(null, res);
+        }
+    })
+}
+
+ProdutoPedido.removeAll = (result) => {
+    sql.query("DELETE FROM produto_pedidos", (err, res) => {
+        if (err) {
+            result(err);
+        } else {
+            result(null);
+        }
+    })
+};
+
+
+
 module.exports = ProdutoPedido;
