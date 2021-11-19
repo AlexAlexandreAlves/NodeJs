@@ -6,6 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./app/routes/produto.routes.js")(app);
 require("./app/routes/pedido.routes.js")(app);
 require("./app/routes/produto_pedido.routes.js")(app);
+require("./app/routes/usuario.routes.js")(app);
 
 
 app.get("/", (req, res) => {
