@@ -16,3 +16,5 @@ Usuario.create = (usuario, result) => {
         }
     })
 }
+
+module.exports = Usuario;
