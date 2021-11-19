@@ -2,7 +2,7 @@ module.exports = app => {
     const usuarioController = require("../controllers/usuario.controller.js");
 
     //Caso possua cadastro
-    //app.post("/sigin", usuarioController.sigIn);
+    app.post("/sigin", usuarioController.sigIn);
     //Caso não possua cadastro
     app.post("/sigup", usuarioController.sigUp);
 
