@@ -11,8 +11,8 @@ Usuario.create = (usuario, result) => {
     sql.query("INSERT INTO usuarios SET ?", usuario, (err, res) => {
         if (err) {
             console.log("Erro: ", err);
-            result(err, null);
-            return;
+        }else{
+            result(null, "Usuario criado com sucesso");
         }
     })
 }
