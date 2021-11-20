@@ -23,6 +23,45 @@ verifyToken = (req, res, next) => {
     }
 }
 
+isAdmin = (req, res, next) => {
+    usuarioModel.findById(req.usuarioId, (err, data) => {
+        if (data.tipo == 1) {
+            next();
+        } else {
+            res.status(403).send({
+                message: "Você não possui o seu usuario como ADM!"
+            })
+        }
+    })
+}
+
+isBalcao = (req, res, next) => {
+    usuarioModel.findById(req.usuarioId, (err, data) => {
+        if (data.tipo == 2) {
+            next();
+        } else {
+            res.status(403).send({
+                message: "Você não possui o seu usuario como Balconista!"
+            })
+        }
+    })
+}
+
+isCozinha = (req, res, next) => {
+    usuarioModel.findById(req.usuarioId, (err, data) => {
+        if (data.tipo == 3) {
+            next();
+        } else {
+            res.status(403).send({
+                message: "Você não possui o seu usuario como Cozinheiro!"
+            })
+        }
+    })
+}
+
 module.exports = {
-    verifyToken: verifyToken
+    verifyToken: verifyToken,
+    isAdmin: isAdmin,
+    isBalcao: isBalcao,
+    isCozinha: isCozinha
 }
