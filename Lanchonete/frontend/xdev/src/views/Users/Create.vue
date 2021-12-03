@@ -81,7 +81,7 @@ export default {
         senha: this.senha,
         tipo: this.tipo,
       };
-      UserService.sigUp(dados)
+      UserService.signup(dados)
         .then((response) => {
           alert(responde.data);
           this.msgSucesso = response.data;
