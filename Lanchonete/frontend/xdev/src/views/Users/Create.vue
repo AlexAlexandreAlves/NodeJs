@@ -54,7 +54,7 @@ export default {
       tipo: "",
       formValido: "falso",
       msgSucesso: "",
-      msgSucesso: "",
+      msgErro: "",
       itens: [
         { nome: "Administrador", valor: "1" },
         { nome: "Balcão", valor: "2" },
@@ -83,7 +83,7 @@ export default {
       };
       UserService.signup(dados)
         .then((response) => {
-          alert(responde.data);
+          alert(response.data);
           this.msgSucesso = response.data;
         })
         .catch((e) => {

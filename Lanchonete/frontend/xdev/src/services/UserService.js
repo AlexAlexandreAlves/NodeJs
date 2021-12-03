@@ -2,7 +2,7 @@ import http from "../http-common";
 
 class UserService {
     signup(data){
-        return http.post("/sigUp", data);
+        return http.post("/sigup", data);
     }
 }
 
