@@ -30,7 +30,12 @@
               item-value="valor"
             />
 
-            <v-btn @click="adicionarUsuario" color="primary">Criar</v-btn>
+            <v-btn
+              :disabled="!formValido"
+              @click="adicionarUsuario"
+              color="primary"
+              >Criar</v-btn
+            >
           </v-form>
         </v-card-text>
       </v-card>
@@ -39,6 +44,8 @@
 </template>
 
 <script>
+import UserService from "../../services/UserService.js";
+
 export default {
   data() {
     return {
@@ -46,6 +53,8 @@ export default {
       senha: "",
       tipo: "",
       formValido: "falso",
+      msgSucesso: "",
+      msgSucesso: "",
       itens: [
         { nome: "Administrador", valor: "1" },
         { nome: "Balcão", valor: "2" },
@@ -58,10 +67,30 @@ export default {
       regrasSenha: [
         (v) => !!v || "Senha precisa ser preenchido",
         (v) =>
-          (v && v.lenght >= 8) || "Senha precisar ter ao menos 8 caracteres",
+          (v && v.length >= 8) || "Senha precisar ter ao menos 8 caracteres",
       ],
-      regrasTipo: [(v) => !!v || "Tipo de usuário precisa ser preenchido"]
+      regrasTipo: [(v) => !!v || "Tipo de usuário precisa ser preenchido"],
     };
+  },
+  methods: {
+    adicionarUsuario: function () {
+      this.msgSucesso = "";
+      this.msgErro = "";
+      let dados = {
+        email: this.email,
+        senha: this.senha,
+        tipo: this.tipo,
+      };
+      UserService.sigUp(dados)
+        .then((response) => {
+          alert(responde.data);
+          this.msgSucesso = response.data;
+        })
+        .catch((e) => {
+          alert(e);
+          this.msgErro = e;
+        });
+    },
   },
 };
 </script>
