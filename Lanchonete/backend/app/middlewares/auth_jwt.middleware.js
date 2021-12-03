@@ -41,7 +41,7 @@ isBalcao = (req, res, next) => {
             next();
         } else {
             res.status(403).send({
-                message: "Você não possui o seu usuario como Balconista!"
+                message: "Você não possui o seu usuario como Balconista!"   
             })
         }
     })

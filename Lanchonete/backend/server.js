@@ -1,7 +1,18 @@
+const cors = require('cors');
+const bodyParser = require('body-parser'); 
 const express = require('express');
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    app.use(cors());
+    next();
+})
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 require("./app/routes/produto.routes.js")(app);
 require("./app/routes/pedido.routes.js")(app);
